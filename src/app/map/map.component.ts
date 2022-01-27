@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import * as Mapboxgl from 'mapbox-gl';
-
-import { ComponentFactoryResolver } from '@angular/core';
-import { MappingIconComponent } from '../mapping-icon/mapping-icon.component';
+import { allBranches } from 'db-seeding/allBranches';
 
 @Component({
   selector: 'app-map',
@@ -22,7 +20,7 @@ export class MapComponent implements OnInit {
     lat: 51.5,
   };
 
-  constructor(private ComponentFactoryResolver: ComponentFactoryResolver) {}
+  constructor(private renderer: Renderer2) {}
 
   ngOnInit(): void {
     this.map = new Mapboxgl.Map({
@@ -32,34 +30,19 @@ export class MapComponent implements OnInit {
       center: [-73.97564277199047, 40.73131422],
       zoom: 3,
     });
-    this.createMarker(-73.97564277199047, 40.73131422);
-  }
+    for (const feature of allBranches.features) {
+      const el = this.renderer.createElement('div');
+      el.className = 'marker';
 
-  createMarker(lng: number, lat: number) {
-    const marker = new Mapboxgl.Marker({
-      draggable: true,
-    })
-      .setLngLat([lng, lat])
-      .addTo(this.map);
-
-    marker.on('drag', () => {
-      this.chosenLngLat = marker.getLngLat();
-    });
+      new Mapboxgl.Marker({ element: el })
+        .setLngLat(feature.geometry.coordinates)
+        .setPopup(
+          new Mapboxgl.Popup({ offset: 25 }) // add popups
+            .setHTML(
+              `<img src="../../assets/McDonald's-logo.png" alt="McDonald's Logo" width="20" height="25"><h3>State: ${feature.properties.state}</h3><p>Store Url: <a href="${feature.properties.storeUrl}">Visit store Website!</a></p><p>City: ${feature.properties.city}</p><p>Phone: ${feature.properties.phone}</p><p>State: ${feature.properties.state}</p><p>Zip: ${feature.properties.zip}</p>`
+            )
+        )
+        .addTo(this.map);
+    }
   }
-
-  showLocations() {
-    this.ComponentFactoryResolver.resolveComponentFactory(MappingIconComponent);
-  }
-  // dblClickMap() {
-  //   this.map.on('click', (e: any) => {
-  //     let coordinates = e.lngLat;
-  //     if (!this.showMarker) {
-  //       this.createMarker(coordinates.lng, coordinates.lat);
-  //     }
-  // else {
-  //   coordinates = e.lngLat;
-  //   this.createMarker(coordinates.lng, coordinates.lat);
-  // }
-  //   });
-  // }
 }

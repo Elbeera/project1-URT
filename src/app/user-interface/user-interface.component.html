@@ -1,0 +1,31 @@
+<div class="h-90 w-80 absolute bg-indigo-900 inset-y-0 right-0 mt-10 mr-8">
+  <div class="h-10 bg-slate-50 mt-3 mr-3 ml-3 flex">
+    <img
+      class="h-10 ml-8"
+      src="../../assets/gps-marker-icon.png"
+      alt="Gps Pin"
+      (click)="setInterface('gps')"
+    />
+    <img
+      class="h-10 ml-14"
+      src="../../assets/favorites-star-icon.png"
+      alt="Favourites"
+      (click)="setInterface('favourites')"
+    />
+    <img
+      class="h-10 ml-14"
+      src="../../assets/user-avatar-logo.png"
+      alt="User Profile"
+      (click)="setInterface('userProfile')"
+    />
+  </div>
+  <div *ngIf="currentInterface === 'gps'">
+    <h3 class="text-slate-50">Current Location</h3>
+  </div>
+  <div *ngIf="currentInterface === 'favourites'">
+    <h3 class="text-slate-50">Favourites List</h3>
+  </div>
+  <div *ngIf="currentInterface === 'userProfile'">
+    <h3 class="text-slate-50">User Profile</h3>
+  </div>
+</div>

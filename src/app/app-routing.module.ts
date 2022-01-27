@@ -6,8 +6,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 
 import { HeaderComponent } from './header/header.component';
 import { MapComponent } from './map/map.component';
-import { MappingIconComponent } from './mapping-icon/mapping-icon.component';
-import { PlaceIconsDirective } from './directives/placeIconsDirevtive/place-icons.directive';
+import { UserInterfaceComponent } from './user-interface/user-interface.component';
 
 const routes: Routes = [
   { path: '', component: SignInComponent },
@@ -27,6 +26,5 @@ export const routingComponents = [
   SignInComponent,
   SignUpComponent,
   MainPageComponent,
-  MappingIconComponent,
-  PlaceIconsDirective,
+  UserInterfaceComponent,
 ];

@@ -18,7 +18,7 @@ export class SignInComponent implements OnInit {
   //   console.log('hello');
   // }
 
-  onLoginUser(userData: Object) {
-    console.log(userData);
+  onLoginUser(username: string) {
+    this.username = username;
   }
 }

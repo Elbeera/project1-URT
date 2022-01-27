@@ -1,21 +1,24 @@
 #map {
-  /* display: flex;
-  justify-content: center;
-  align-content: center; */
-
-  height: 80vh;
+  height: 95vh;
   width: 80vw;
 }
 
 .marker {
-  background-image: url("../../assets/map-pin-icon.png");
+  background-image: url("../../assets/red-button-icon.png");
   background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  border-radius: 10%;
   cursor: pointer;
 }
+.mapboxgl-popup {
+  max-width: 200px;
+}
 
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+}
 /* The switch - the box around the slider */
 .switch {
   position: relative;

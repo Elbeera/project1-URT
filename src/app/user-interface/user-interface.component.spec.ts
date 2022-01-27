@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MappingIconComponent } from './mapping-icon.component';
+import { UserInterfaceComponent } from './user-interface.component';
 
-describe('MappingIconComponent', () => {
-  let component: MappingIconComponent;
-  let fixture: ComponentFixture<MappingIconComponent>;
+describe('UserInterfaceComponent', () => {
+  let component: UserInterfaceComponent;
+  let fixture: ComponentFixture<UserInterfaceComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MappingIconComponent ]
+      declarations: [ UserInterfaceComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MappingIconComponent);
+    fixture = TestBed.createComponent(UserInterfaceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
