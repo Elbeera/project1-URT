@@ -5,27 +5,6 @@ export const allBranches: any = {
       type: 'Feature',
       geometry: {
         type: 'Point',
-        coordinates: [-80.140924, 25.789141],
-      },
-      properties: {
-        storeNumber: '14372',
-        storeType: 'FREESTANDING',
-        address: '1601 ALTON RD',
-        city: 'MIAMI BEACH',
-        state: 'FL',
-        zip: '33139-2420',
-        phone: '(305)672-7055',
-        playplace: 'N',
-        driveThru: 'Y',
-        archCard: 'Y',
-        freeWifi: 'Y',
-        storeUrl: 'http://www.mcflorida.com/14372',
-      },
-    },
-    {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
         coordinates: [-80.218683, 25.765501],
       },
       properties: {

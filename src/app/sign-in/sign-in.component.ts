@@ -9,6 +9,7 @@ export class SignInComponent implements OnInit {
   username: string = '';
   password: string = '';
   userExists: boolean = false;
+  users: object[] = [];
 
   constructor() {}
 

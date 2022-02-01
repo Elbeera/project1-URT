@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-interface.component.css'],
 })
 export class UserInterfaceComponent implements OnInit {
-  currentInterface: string = '';
+  currentInterface: string = 'userProfile';
   constructor() {}
 
   ngOnInit(): void {}
