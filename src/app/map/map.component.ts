@@ -2,6 +2,8 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import * as Mapboxgl from 'mapbox-gl';
 import { allBranches } from 'db-seeding/allBranches';
+import { HttpclientService } from '../services/httpclient.service';
+import { Location } from '../location';
 
 @Component({
   selector: 'app-map',
@@ -10,19 +12,15 @@ import { allBranches } from 'db-seeding/allBranches';
 })
 export class MapComponent implements OnInit {
   map: any = Mapboxgl.Map;
-  element: any;
+  locations: Location[] = [];
 
-  chosenLngLat: {
-    lng: number;
-    lat: number;
-  } = {
-    lng: -0.24,
-    lat: 51.5,
-  };
-
-  constructor(private renderer: Renderer2) {}
+  constructor(
+    private renderer: Renderer2,
+    private httpService: HttpclientService
+  ) {}
 
   ngOnInit(): void {
+    this.getLocations();
     this.map = new Mapboxgl.Map({
       accessToken: environment.mapboxKey,
       container: 'map',
@@ -34,7 +32,6 @@ export class MapComponent implements OnInit {
       const el = this.renderer.createElement('div');
       el.className = 'marker';
       el.id = 'mapPin';
-      // this.element = el;
       new Mapboxgl.Marker({ element: el })
         .setLngLat(feature.geometry.coordinates)
         .setPopup(
@@ -45,6 +42,14 @@ export class MapComponent implements OnInit {
         .addTo(this.map);
     }
   }
+
+  getLocations(): void {
+    this.httpService.getAllLocations().subscribe((data) => {
+      this.locations = data.locations;
+      console.log(this.locations);
+    });
+  }
+
   clickPin() {
     console.log(document.getElementsByClassName('marker').item(1)?.id);
   }

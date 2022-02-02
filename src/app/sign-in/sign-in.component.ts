@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpclientService } from '../services/httpclient.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,17 +11,23 @@ export class SignInComponent implements OnInit {
   username: string = '';
   password: string = '';
   userExists: boolean = false;
-  users: object[] = [];
+  users: User[] = [];
 
-  constructor() {}
+  constructor(private httpService: HttpclientService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUsers();
+  }
 
-  // onSignIn() {
-  //   console.log('hello');
-  // }
+  getUsers(): void {
+    this.httpService.getAllUsers().subscribe((data) => {
+      this.users = data.users;
+      console.log(this.users);
+    });
+  }
 
   onLoginUser(username: string) {
     this.username = username;
+    console.log(this.username);
   }
 }
