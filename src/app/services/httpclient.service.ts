@@ -21,4 +21,13 @@ export class HttpclientService {
       `${this.serverUrl}/locations`
     );
   }
+
+  postUser(user: {
+    name: string;
+    mobile_number: number;
+    email: string;
+    password: string;
+  }) {
+    return this.http.post(`${this.serverUrl}/user`, user);
+  }
 }
