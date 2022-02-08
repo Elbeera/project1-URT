@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
 import { HttpclientService } from '../services/httpclient.service';
 import { User } from '../user';
@@ -14,28 +15,29 @@ export class SignInComponent implements OnInit {
   signedIn: boolean = false;
   users: User[] = [];
 
-  constructor(private httpService: HttpclientService) {}
+  constructor(private httpService: HttpclientService, private router: Router) {}
 
   ngOnInit(): void {
     // this.getUsers();
   }
 
-  getUsers(): void {
-    this.httpService.getAllUsers().subscribe((data) => {
-      this.users = data.users;
-      console.log(this.users);
-    });
-  }
+  // getUsers(): void {
+  //   this.httpService.getAllUsers().subscribe((data) => {
+  //     this.users = data.users;
+  //     console.log(this.users);
+  //   });
+  // }
 
   async signIn(userData: { username: string; password: string }) {
     this.username = userData.username;
     try {
       const user = await Auth.signIn(userData.username, userData.password);
       this.signedIn = true;
+      this.router.navigateByUrl('/mainPage');
       console.log(user);
     } catch (error) {
       console.log('error signing in', error);
     }
-    console.log(userData);
+    // console.log(userData);
   }
 }

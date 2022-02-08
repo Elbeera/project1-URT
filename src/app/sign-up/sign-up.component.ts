@@ -24,14 +24,14 @@ export class SignUpComponent implements OnInit {
     mobile_number: string;
   }) {
     try {
-      const { user } = await Auth.signUp({
-        username: userData.email,
-        password: userData.password,
-        attributes: {
-          email: userData.email,
-          phone_number: Number(userData.mobile_number),
-        },
-      });
+      // const { user } = await Auth.signUp({
+      //   username: userData.email,
+      //   password: userData.password,
+      //   attributes: {
+      //     email: userData.email,
+      //     phone_number: Number(userData.mobile_number),
+      //   },
+      // });
       this.userEmail = userData.email;
       this.verifyEmail = true;
       this.http
@@ -45,7 +45,7 @@ export class SignUpComponent implements OnInit {
           this.postedUser = data;
           console.log(this.postedUser);
         });
-      console.log(user);
+      // console.log(user);
     } catch (error) {
       console.log('error signing up:', error);
     }
