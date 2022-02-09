@@ -12,6 +12,7 @@
         Sign in to Mapzzy...
       </h2>
     </div>
+    <h3>{{ errorMessage }}</h3>
     <form
       #userLogin="ngForm"
       (ngSubmit)="signIn(userLogin.value)"

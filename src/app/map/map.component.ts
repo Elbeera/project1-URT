@@ -36,7 +36,7 @@ export class MapComponent implements OnInit {
         .setLngLat(feature.geometry.coordinates)
         .setPopup(
           new Mapboxgl.Popup({ offset: 25 }).setHTML(
-            `<img src="../../assets/McDonald's-logo.png" alt="McDonald's Logo" width="20" height="25"><h3>State: ${feature.properties.state}</h3><p>Store Url: <a href="${feature.properties.storeUrl}">Visit store Website!</a></p><p>City: ${feature.properties.city}</p><p>Phone: ${feature.properties.phone}</p><p>State: ${feature.properties.state}</p><p>Zip: ${feature.properties.zip}</p><button (click)="">Add to Favourites ⭐️</button>`
+            `<img src="../../assets/McDonald's-logo.png" alt="McDonald's Logo" width="20" height="25"><h3>State: ${feature.properties.state}</h3><p>Store Url: <a href="${feature.properties.storeUrl}">Visit store Website!</a></p><p>City: ${feature.properties.city}</p><p>Phone: ${feature.properties.phone}</p><p>State: ${feature.properties.state}</p><p>Zip: ${feature.properties.zip}</p><button>Add to Favourites ⭐️</button>`
           )
         )
         .addTo(this.map);
@@ -46,15 +46,7 @@ export class MapComponent implements OnInit {
   getLocations(): void {
     this.httpService.getAllLocations().subscribe((data) => {
       this.locations = data.locations;
-      console.log(this.locations);
+      // console.log(this.locations);
     });
   }
-
-  clickPin() {
-    console.log(document.getElementsByClassName('marker').item(1)?.id);
-  }
-
-  // clicked() {
-  //   console.log('Hello!');
-  // }
 }

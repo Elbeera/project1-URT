@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Auth } from 'aws-amplify';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +10,16 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   userName: string = 'Hothyfa';
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
+
+  async signOut() {
+    try {
+      await Auth.signOut();
+      this.router.navigateByUrl('/signIn');
+    } catch (error) {
+      console.log('error signing out: ', error);
+    }
+  }
 }
