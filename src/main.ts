@@ -5,6 +5,7 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 import Amplify, { Auth } from 'aws-amplify';
+//@ts-ignore
 import awsconfig from './aws-exports';
 Amplify.configure(awsconfig);
 
