@@ -9,7 +9,7 @@ import { Auth } from 'aws-amplify';
 })
 
 export class HeaderComponent implements OnInit {
- userEmailAddress: string = ""
+ name: string;
   
   constructor(private router:Router) {
     
@@ -19,12 +19,11 @@ export class HeaderComponent implements OnInit {
     Auth.currentAuthenticatedUser({
       bypassCache: false  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
   }).then(user => 
-    console.log(user))
+    console.log())
   .catch(err => console.log(err));
   let user = await Auth.currentAuthenticatedUser();
-
   const { attributes } = user;
-  this.userEmailAddress = attributes.email;
+  this.name = attributes.name;
 
   }
   

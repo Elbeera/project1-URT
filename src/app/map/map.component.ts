@@ -4,6 +4,7 @@ import * as Mapboxgl from 'mapbox-gl';
 import { allBranches } from 'db-seeding/allBranches';
 import { HttpclientService } from '../services/httpclient.service';
 import { Location } from '../location';
+import { features } from 'process';
 
 @Component({
   selector: 'app-map',
@@ -13,7 +14,7 @@ import { Location } from '../location';
 export class MapComponent implements OnInit {
   map: any = Mapboxgl.Map;
   locations: Location[] = [];
-
+// zip:string = "";
   constructor(
     private renderer: Renderer2,
     private httpService: HttpclientService
@@ -21,6 +22,7 @@ export class MapComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLocations();
+  
     this.map = new Mapboxgl.Map({
       accessToken: environment.mapboxKey,
       container: 'map',
@@ -28,15 +30,17 @@ export class MapComponent implements OnInit {
       center: [-73.97564277199047, 40.73131422],
       zoom: 2,
     });
-    for (const feature of allBranches.features) {
+    for (const feature of this.locations) {
+      let zip = feature.properties.zip
       const el = this.renderer.createElement('div');
       el.className = 'marker';
       el.id = 'mapPin';
+      const coordinates = {lng: feature.geometry.coordinates[0], lat: feature.geometry.coordinates[1]}
       new Mapboxgl.Marker({ element: el })
-        .setLngLat(feature.geometry.coordinates)
+        .setLngLat(coordinates)
         .setPopup(
           new Mapboxgl.Popup({ offset: 25 }).setHTML(
-            `<img src="../../assets/McDonald's-logo.png" alt="McDonald's Logo" width="20" height="25"><h3>State: ${feature.properties.state}</h3><p>Store Url: <a href="${feature.properties.storeUrl}">Visit store Website!</a></p><p>City: ${feature.properties.city}</p><p>Phone: ${feature.properties.phone}</p><p>State: ${feature.properties.state}</p><p>Zip: ${feature.properties.zip}</p><button (click)="">Add to Favourites ⭐️</button>`
+            `<img src="../../assets/McDonald's-logo.png" alt="McDonald's Logo" width="20" height="25"><h3>State: ${feature.properties.state}</h3><p>Store Url: <a href="${feature.properties.storeUrl}">Visit store Website!</a></p><p>City: ${feature.properties.city}</p><p>Phone: ${feature.properties.phone}</p><p>State: ${feature.properties.state}</p><p>Zip: ${feature.properties.zip}</p><button onclick="addToFavourites(${zip})">Add to Favourites ⭐️</button>`
           )
         )
         .addTo(this.map);
@@ -46,12 +50,18 @@ export class MapComponent implements OnInit {
   getLocations(): void {
     this.httpService.getAllLocations().subscribe((data) => {
       this.locations = data.locations;
-      console.log(this.locations);
+      // console.log(this.locations);
     });
   }
 
   clickPin() {
     console.log(document.getElementsByClassName('marker').item(1)?.id);
+
+  }
+
+  addToFavourites(zip) {
+
+    console.log(zip)
   }
 
   // clicked() {

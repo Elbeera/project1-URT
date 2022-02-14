@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { User } from '../user';
 import { Location } from '../location';
@@ -21,7 +21,9 @@ export class HttpclientService {
       `${this.serverUrl}/locations`
     );
   }
-
+getUser(user_id) {
+  return this.http.get(`${this.serverUrl}/users/${user_id}`)
+}
   postUser(user: {
     name: string;
     mobile_number: number;
@@ -30,4 +32,12 @@ export class HttpclientService {
   }) {
     return this.http.post(`${this.serverUrl}/user`, user);
   }
+
+//   getFavourites(user_id) {
+//     return this.http.get(`${this.serverUrl}/users/${user_id}/favourites`)
+//   }
+
+//   addToFavourites(){
+
+//   }
 }
