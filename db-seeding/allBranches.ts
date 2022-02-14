@@ -715,3 +715,50 @@ export const allBranches: any = {
     },
   ],
 };
+
+// const https = require('https');
+
+// async function postAll(allBranches) {
+//   const options = {
+//     hostname: 'project1-hasura.hasura.app',
+//     port: 443,
+//     path: '/api/rest/Location',
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       'x-hasura-admin-secret':
+//         'ZUq7zvOLLCxLpGATGeQPTBjxtfrOjnFpofJlfQbvtldmZSyJm72bOvzjDzM2PPLJ',
+//     },
+//   };
+//   const promises = [];
+//   for (let i = 0; i < allBranches.length; i++) {
+//     options.headers['Content-Length'] = JSON.stringify(allBranches[i]).length;
+
+//     const req = new Promise((resolve) => {
+//       const req = https
+//         .request(options, (res) => {
+//           let response = '';
+//           res.on('data', (buffer) => (response += buffer));
+
+//           res.on('end', () => {
+//             resolve({
+//               statusCode: res.statusCode,
+//               body: JSON.stringify(response),
+//             });
+//             console.log(response);
+//           });
+//         })
+//         .on('error', (err) => console.log(err));
+
+//       req.write(JSON.stringify(allBranches[i]));
+//       req.end();
+//     });
+//     promises.push(req);
+//   }
+
+//   console.log(promises);
+//   await Promise.all(promises);
+// }
+
+// postAll(allBranches.features);
+// console.log(Array.isArray(allBranches.features));

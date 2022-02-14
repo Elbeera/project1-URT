@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
 import { HttpclientService } from '../services/httpclient.service';
 
@@ -13,7 +14,7 @@ export class SignUpComponent implements OnInit {
   verifyEmail: boolean = false;
   verificationSuccessful = false;
 
-  constructor(private http: HttpclientService) {}
+  constructor(private http: HttpclientService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -35,17 +36,17 @@ export class SignUpComponent implements OnInit {
       });
       this.userEmail = userData.email;
       this.verifyEmail = true;
-      this.http
-        .postUser({
-          name: userData.name,
-          mobile_number: Number(userData.mobile_number),
-          email: userData.email,
-          password: userData.password,
-        })
-        .subscribe((data) => {
-          this.postedUser = data;
-          console.log(this.postedUser);
-        });
+      // this.http
+      //   .postUser({
+      //     name: userData.name,
+      //     mobile_number: Number(userData.mobile_number),
+      //     email: userData.email,
+      //     password: userData.password,
+      //   })
+      //   .subscribe((data) => {
+      //     this.postedUser = data;
+      //     console.log(this.postedUser);
+      //   });
       // console.log(user);
     } catch (error) {
       console.log('error signing up:', error);
@@ -57,6 +58,7 @@ export class SignUpComponent implements OnInit {
         this.userEmail,
         verificationCode.verification_code
       );
+      this.router.navigateByUrl('/signIn');
       this.verificationSuccessful = true;
     } catch (error) {
       console.log('error confirming sign up', error);

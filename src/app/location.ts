@@ -1,8 +1,8 @@
 export interface Location {
-  typess: string;
+  type: string;
   geometry: {
     types: string;
-    coordinates: number[];
+    coordinates: [number, number];
   };
   properties: {
     zip: string;

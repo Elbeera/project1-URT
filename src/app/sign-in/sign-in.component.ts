@@ -10,9 +10,10 @@ import { User } from '../user';
   styleUrls: ['./sign-in.component.css'],
 })
 export class SignInComponent implements OnInit {
+  errorMessage: string = '';
   username: string = '';
   password: string = '';
-  signedIn: boolean = false;
+  // signedIn: boolean = false;
   users: User[] = [];
 
   constructor(private httpService: HttpclientService, private router: Router) {}
@@ -31,13 +32,15 @@ goToSignUp() {
   this.router.navigateByUrl('/signUp');
 }
   async signIn(userData: { username: string; password: string }) {
+    console.log(userData);
     this.username = userData.username;
     try {
       const user = await Auth.signIn(userData.username, userData.password);
-      this.signedIn = true;
+      // this.signedIn = true;
       this.router.navigateByUrl('/mainPage');
       console.log(user);
     } catch (error) {
+      this.errorMessage = error.message;
       console.log('error signing in', error);
     }
     // console.log(userData);
