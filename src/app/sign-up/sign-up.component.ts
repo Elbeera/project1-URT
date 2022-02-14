@@ -25,16 +25,15 @@ export class SignUpComponent implements OnInit {
     mobile_number: string;
   }) {
     try {
-      console.log(userData);
       const { user } = await Auth.signUp({
         username: userData.email,
         password: userData.password,
         attributes: {
           email: userData.email,
           phone_number: Number(userData.mobile_number),
+          name: userData.name
         },
       });
-      console.log(user);
       this.userEmail = userData.email;
       this.verifyEmail = true;
       // this.http

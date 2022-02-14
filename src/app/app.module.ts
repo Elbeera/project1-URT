@@ -4,9 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FavouritesComponent } from './favourites/favourites.component';
 
 @NgModule({
-  declarations: [AppComponent, routingComponents],
+  declarations: [AppComponent, routingComponents, FavouritesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

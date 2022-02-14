@@ -28,7 +28,9 @@ export class SignInComponent implements OnInit {
   //     console.log(this.users);
   //   });
   // }
-
+goToSignUp() {
+  this.router.navigateByUrl('/signUp');
+}
   async signIn(userData: { username: string; password: string }) {
     console.log(userData);
     this.username = userData.username;
