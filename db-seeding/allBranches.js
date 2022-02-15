@@ -755,7 +755,6 @@ exports.allBranches = {
     ]
 };
 var https = require('https');
-// let url = 'https://project1-hasura.hasura.app/api/rest/Location';
 function postAll(allBranches) {
     return __awaiter(this, void 0, void 0, function () {
         var options, promises, _loop_1, i;

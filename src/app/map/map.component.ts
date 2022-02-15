@@ -4,6 +4,7 @@ import * as Mapboxgl from 'mapbox-gl';
 import { HttpclientService } from '../services/httpclient.service';
 import { Location } from '../location';
 import { features } from 'process';
+import { UserInterfaceComponent } from '../user-interface/user-interface.component';
 
 @Component({
   selector: 'app-map',
@@ -13,7 +14,7 @@ import { features } from 'process';
 export class MapComponent implements OnInit {
   map: any = Mapboxgl.Map;
   locations: Location[] = [];
-// zip:string = "";
+
   constructor(
     private renderer: Renderer2,
     private httpService: HttpclientService
@@ -21,7 +22,6 @@ export class MapComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLocations();
-  
     this.map = new Mapboxgl.Map({
       accessToken: environment.mapboxKey,
       container: 'map',
