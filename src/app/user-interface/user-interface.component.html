@@ -1,4 +1,4 @@
-<div *ngIf="name else noUserInterface" class="h-100 w-80 absolute bg-beige border-t-0  inset-y-0 right-0 mt-14 mr-1">
+<div *ngIf="user.name else noUserInterface" class="h-100 w-80 absolute bg-beige border-t-0  inset-y-0 right-0 mt-14 mr-1">
   <ng-template #noUserInterface> </ng-template>
   <div class="h-10  mt-3 mr-3 ml-3 flex text-gray-500">
     <img
@@ -26,8 +26,8 @@
   </div>
 <app-favourites  *ngIf="currentInterface === 'favourites'" (click)="onClick()"></app-favourites>
 <div class="flex flex-col items-center" *ngIf="currentInterface === 'userProfile'">
-  <h3 class="text-black font-bold uppercase ">{{name}}</h3>
-  <p>{{email}}</p>
+  <h3 class="text-black font-bold uppercase ">{{user.name}}</h3>
+  <p>{{user.email}}</p>
   
 </div>
 </div>
