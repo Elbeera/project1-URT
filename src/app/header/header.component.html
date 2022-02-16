@@ -5,6 +5,7 @@
     <p
       class="sm:text-3xl sm:truncate"
     >
+
        
     <span *ngIf="capitalisedName else anon" class="text-base leading-3 text-black mr-2"> Hello {{ capitalisedName }}!</span>
   <span class="text-sm leading-3 text-gray-600 mr-2">
@@ -14,6 +15,7 @@
 
 
         <button
+
         *ngIf="capitalisedName else empty"
         (click)="signOut()"
           type="button"

@@ -31,23 +31,23 @@ export class SignUpComponent implements OnInit {
         attributes: {
           email: userData.email,
           phone_number: Number(userData.mobile_number),
-          name: userData.name
+          name: userData.name,
         },
       });
       this.userEmail = userData.email;
       this.verifyEmail = true;
-      // this.http
-      //   .postUser({
-      //     name: userData.name,
-      //     mobile_number: Number(userData.mobile_number),
-      //     email: userData.email,
-      //     password: userData.password,
-      //   })
-      //   .subscribe((data) => {
-      //     this.postedUser = data;
-      //     console.log(this.postedUser);
-      //   });
-      // console.log(user);
+      this.http
+        .postUser({
+          name: userData.name,
+          mobile_number: Number(userData.mobile_number),
+          email: userData.email,
+          password: userData.password,
+        })
+        .subscribe((data) => {
+          this.postedUser = data;
+          console.log(this.postedUser);
+        });
+      console.log(user);
     } catch (error) {
       console.log('error signing up:', error);
     }

@@ -4,6 +4,7 @@ import { HttpclientService } from '../services/httpclient.service';
 
 import { User } from '../user';
 import { allBranches } from 'db-seeding/allBranches';
+import { UserProviderService } from '../services/user-provider.service';
 
 @Component({
   selector: 'app-user-interface',
@@ -12,10 +13,11 @@ import { allBranches } from 'db-seeding/allBranches';
 })
 export class UserInterfaceComponent implements OnInit {
   currentInterface: string = '';
-  name: string = ''
-  favourites: [] = []
-  email: string = ''
+  name: string = '';
+  favourites: [] = [];
+  email: string = '';
   users: User[] = [];
+
   noUserInterface: any;
   // user: {
   //   name: string;
@@ -60,6 +62,20 @@ this.httpService.getUser(userIdentity).subscribe((data:any) => {
       this.favourites = data.users[0].favourites;
        console.log(this.favourites)
     });
+  user: Partial<User> = {
+    name: '',
+    email: '',
+    id: 0,
+    favourites: [],
+  };
+
+  constructor(
+    private httpService: HttpclientService,
+    private userProvider: UserProviderService
+  ) {}
+
+  async ngOnInit(): Promise<void> {
+    this.user = await this.userProvider.authenticatedUser();
   }
 
   setInterface(page: string) {
@@ -73,6 +89,6 @@ this.httpService.getUser(userIdentity).subscribe((data:any) => {
   }
 
   onClick() {
-console.log(document.getElementById("#state"))
+    console.log(document.getElementById('#state'));
   }
 }
