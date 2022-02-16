@@ -16,6 +16,7 @@ export class UserInterfaceComponent implements OnInit {
   favourites: [] = []
   email: string = ''
   users: User[] = [];
+  noUserInterface: any;
   // user: {
   //   name: string;
   //   email: string;
@@ -52,7 +53,7 @@ export class UserInterfaceComponent implements OnInit {
   }
 
   getUserById(): void {
-    let userId = this.users.filter((user)=> (user.email === this.email)) // because users is an array of objects, it will return the full object it matches with?.
+    let userId = this.users.filter((user)=> (user.email === this.email))
     console.log(userId)
     let userIdentity = userId[0].id
 this.httpService.getUser(userIdentity).subscribe((data:any) => {

@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FavouritesComponent } from './favourites/favourites.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [AppComponent, routingComponents, FavouritesComponent],
@@ -14,6 +15,7 @@ import { FavouritesComponent } from './favourites/favourites.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

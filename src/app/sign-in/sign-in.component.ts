@@ -4,6 +4,7 @@ import { Auth } from 'aws-amplify';
 import { HttpclientService } from '../services/httpclient.service';
 import { User } from '../user';
 
+
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -15,6 +16,7 @@ export class SignInComponent implements OnInit {
   password: string = '';
   // signedIn: boolean = false;
   users: User[] = [];
+
 
   constructor(private httpService: HttpclientService, private router: Router) {}
 

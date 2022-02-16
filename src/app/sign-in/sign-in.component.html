@@ -1,29 +1,40 @@
+<!DOCTYPE html>
+
+<div class="2xl:container h-screen m-auto">
+  <div hidden class="fixed inset-0 w-7/12 lg:block">
+    <img
+      class="w-full h-full object-cover"
+      src="../../assets/mcdo.png"
+      alt="Workflow"
+    />
+  </div>
+  <div hidden role="hidden" class="fixed inset-0 w-6/12 ml-auto bg-white bg-opacity-70 backdrop-blur-xl lg:block"></div>
+  <div class="relative h-full ml-auto lg:w-6/12">
+      <div class="m-auto py-12 px-6 sm:p-20 xl:w-10/12">
+          <div class="space-y-4">
+              <p class="font-medium font-poppins text-2xl text-gray-600">Find your closest
+                <span class="relative">
+                  <span class="block absolute -inset-1 -skew-y-3 bg-red-500" aria-hidden="true"></span>
+                  <span class="text-amber-400 relative">Mcdonald's</span> 
+                </span>
+                location! Sign up or continue as guest:</p>
+          </div>
 <div
-  class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
+  
 >
-  <div class="max-w-md w-full space-y-8">
-    <div>
-      <img
-        class="mx-auto h-14 w-auto"
-        src="https://image.pngaaa.com/456/5939456-middle.png"
-        alt="Workflow"
-      />
-      <h2 class="mt-6 text-center text-2xl font-extrabold text-gray-900">
-        Sign in to Mapzzy...
-      </h2>
-    </div>
+
     <h3>{{ errorMessage }}</h3>
     <form
       #userLogin="ngForm"
       (ngSubmit)="signIn(userLogin.value)"
-      class="mt-8 space-y-6"
+      class="space-y-6 py-6"
       action="#"
       method="POST"
     >
       <input type="hidden" name="remember" value="true" />
       <div class="rounded-md shadow-sm -space-y-px">
         <div>
-          <label for="email-address" class="sr-only">Email address</label>
+          <label for="email-address" class="sr-only">email-address</label>
           <input
             ngModel
             id="username"
@@ -31,11 +42,12 @@
             type="text"
             autocomplete="email"
             required
-            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-            placeholder="Username"
+            class="w-full my-4 py-3 px-6 ring-1 ring-gray-300 rounded-xl placeholder-gray-600 bg-transparent transition disabled:ring-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-400 invalid:border-pink-500 invalid:text-pink-600
+            focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+            placeholder="Email address"
           />
         </div>
-        <div>
+        <div class="flex flex-col items-end">
           <label for="password" class="sr-only">Password</label>
           <input
             ngModel
@@ -44,45 +56,31 @@
             type="password"
             autocomplete="current-password"
             required
-            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            class="w-full py-3 px-6 ring-1 ring-gray-300 rounded-xl placeholder-gray-600  bg-transparent transition disabled:ring-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-400 invalid:ring-amber-400 focus:invalid:outline-none"
             placeholder="Password"
           />
         </div>
       </div>
-      <div>
+      <div class="flex flex-col items-end">
         <button
           type="submit"
-          class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          class="w-6/12 px-6 py-3 rounded-xl border-2 border-gray-500 bg-amber-400 transition hover:bg-amber-300 focus:bg-amber-400 active:bg-amber-300"
         >
-          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-            <svg
-              class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </span>
-          Sign in
+          
+       Sign in 
         </button>
       </div>
     </form>
-    <div>
-      <!-- <a routerlink="/signUp"> -->
+    <hr/> 
+    <div class="flex flex-col items-center my-8">
         <button
         (click)="goToSignUp()"
           type="submit"
-          class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          class="w-6/12 px-6 py-3 rounded-xl border-2 border-gray-500 bg-white transition hover:bg-amber-200 focus:bg-amber-100 active:bg-amber-100"
         >
           <span class="absolute left-0 inset-y-0 flex items-center pl-3">
             <svg
-              class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+              class="h-5 w-5 text-gray-900"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -91,24 +89,15 @@
           </span>
           Sign up
         </button>
-      <!-- </a> -->
     </div>
-    <div>
-      <button
-        type="submit"
-        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-      >
-        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-          <svg
-            class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-          ></svg>
-        </span>
-        Continue as guest!
-      </button>
+    <div class="flex flex-col items-center my-1">
+
+    
+        <p>Just want to browse?
+           <a routerLink="/mainPage" class="text-amber-400 underline-offset-2 decoration-amber-400">Continue as guest</a> </p>
+ 
+      
     </div>
   </div>
 </div>
+

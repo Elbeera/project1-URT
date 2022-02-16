@@ -10,7 +10,9 @@ import { Auth } from 'aws-amplify';
 
 export class HeaderComponent implements OnInit {
  name: string;
-  
+ capitalisedName: string;
+ anon: any 
+
   constructor(private router:Router) {
     
   }
@@ -24,7 +26,7 @@ export class HeaderComponent implements OnInit {
   let user = await Auth.currentAuthenticatedUser();
   const { attributes } = user;
   this.name = attributes.name;
-
+  this.capitalisedName = this.name.charAt(0).toUpperCase()+this.name.slice(1)
   }
   
   
@@ -33,5 +35,9 @@ export class HeaderComponent implements OnInit {
     console.log("Signing out")
     Auth.signOut()
     this.router.navigate(['/signIn'])
+  }
+
+  createAccount():void {
+    this.router.navigate(['/signUp'])
   }
 }
