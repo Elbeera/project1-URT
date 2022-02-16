@@ -3,23 +3,27 @@
 >
   <div class="max-w-md w-full space-y-8">
     <div>
-      <h2 class="mt-6 text-center text-2xl font-extrabold text-gray-900">
-        Sign up to Mapzzy...
+      <h2 class="mt-6 text-center text-2xl font-medium font-poppins text-gray-600">
+        Sign up to view your closest  
+         <span class="relative">
+          <span class="block absolute -inset-1 -skew-y-3 bg-red-500" aria-hidden="true"></span>
+          <span class="text-amber-400 relative">Mcdonald's</span> 
+        </span> location and save your favourites!
       </h2>
     </div>
     <form
       #userPost="ngForm"
       (ngSubmit)="signUp(userPost.value)"
-      class="mt-8 space-y-6"
+      class="mt-8 space-y-6 font-urbanist"
       action="#"
       method="POST"
     >
       <input type="hidden" name="remember" value="true" />
-      <div class="rounded-md shadow-sm -space-y-px">
+      <div class="rounded-md -space-y-px">
         <p class="mt-6 text-l font-bold text-grey-50">Name:</p>
 
         <div>
-          <label for="name" class="sr-only">Email address</label>
+          <label for="name" class="sr-only">Name</label>
           <input
             ngModel
             id="name"
@@ -27,13 +31,13 @@
             type="name"
             autocomplete="name"
             required
-            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            class="w-full my-4 py-3 px-6 ring-1 ring-gray-300 rounded-xl placeholder-gray-600 bg-transparent transition disabled:ring-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-400 invalid:amber-red-400 focus:invalid:outline-none"
             placeholder="Name"
           />
         </div>
-        <p class="mt-6 text-l font-bold text-grey-50">Mobile Number:</p>
+        <p class="mt-8 text-l font-bold text-grey-50">Mobile Number:</p>
         <div>
-          <label for="email-address" class="sr-only">Mobile Number</label>
+          <label for="mobile-number" class="sr-only">Mobile Number</label>
           <input
             ngModel
             id="mobile-number"
@@ -41,11 +45,11 @@
             type="mobile-number"
             autocomplete="mobile-number"
             required
-            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-            placeholder="mobile-number"
+            class="w-full my-4 py-3 px-6 ring-1 ring-gray-300 rounded-xl placeholder-gray-600 bg-transparent transition disabled:ring-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-400 invalid:amber-red-400 focus:invalid:outline-none"
+            placeholder="Mobile Number"
           />
         </div>
-        <p class="mt-6 text-l font-bold text-grey-50">Email address:</p>
+        <p class="mt-8 text-l font-bold text-grey-50">Email address:</p>
         <div>
           <label for="email-address" class="sr-only">Email address</label>
           <input
@@ -55,7 +59,7 @@
             type="email"
             autocomplete="email"
             required
-            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            class="w-full my-4 py-3 px-6 ring-1 ring-gray-300 rounded-xl placeholder-gray-600 bg-transparent transition disabled:ring-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-400 invalid:amber-red-400 focus:invalid:outline-none"
             placeholder="Email Address"
           />
         </div>
@@ -69,13 +73,13 @@
             type="password"
             autocomplete="current-password"
             required
-            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            class="w-full my-4 py-3 px-6 ring-1 ring-gray-300 rounded-xl placeholder-gray-600 bg-transparent transition disabled:ring-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-400 invalid:amber-red-400 focus:invalid:outline-none"
             placeholder="Password"
           />
         </div>
         <p class="mt-6 text-l font-bold text-grey-50">Confirm Password:</p>
         <div>
-          <label for="email-address" class="sr-only">Email address</label>
+          <label for="confirm-password" class="sr-only">confirm-password</label>
           <input
             ngModel
             id="confirm-password"
@@ -83,42 +87,25 @@
             type="password"
             autocomplete="current-password"
             required
-            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-            placeholder="Confirm Password"
+            class="w-full my-4 py-3 px-6 ring-1 ring-gray-300 rounded-xl placeholder-gray-600 bg-transparent transition disabled:ring-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-400 invalid:amber-red-400 focus:invalid:outline-none"
           />
         </div>
       </div>
-      <div>
+      <div class="flex flex-col items-end">
         <button
           type="submit"
-          class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          class="w-6/12 px-6 py-3 rounded-xl border-2 border-gray-500 bg-amber-400 transition hover:bg-amber-300 focus:bg-amber-400 active:bg-amber-300"
         >
-          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-            <!-- Heroicon name: solid/lock-closed -->
-            <svg
-              class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </span>
           Sign up
         </button>
       </div>
     </form>
-    <div>
-      <p>
-        already got an account?
-        <span class="signInLink"><a routerLink="/signIn">Sign in</a></span>
-      </p>
+ 
+    <div class="flex flex-col items-end" >
+      <p>Already with us?
+         <a routerLink="/signIn" class="text-amber-400 underline-offset-1 decoration-amber-400">Sign in</a> </p>
     </div>
+
     <form
       *ngIf="verifyEmail"
       #userCode="ngForm"
@@ -128,7 +115,7 @@
       method="POST"
     >
       <div>
-        <label for="email-address" class="sr-only">Email address</label>
+        <label for="verify-code" class="sr-only">verify-code</label>
         <input
           ngModel
           id="verify-code"
@@ -136,37 +123,24 @@
           type="verification"
           autocomplete="verify"
           required
-          class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          class="w-full my-4 py-3 px-6 ring-1 ring-gray-300 rounded-xl placeholder-gray-600 bg-transparent transition disabled:ring-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-400 invalid:amber-red-400 focus:invalid:outline-none"
           placeholder="Verification Code"
         />
       </div>
+      <div class="flex flex-col items-end">
       <button
         type="submit"
-        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        class="w-6/12 px-6 py-3 rounded-xl border-2 border-gray-500 bg-amber-400 transition hover:bg-amber-300 focus:bg-amber-400 active:bg-amber-300"
       >
-        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-          <!-- Heroicon name: solid/lock-closed -->
-          <svg
-            class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </span>
+
         Verify Email
       </button>
+    </div>
     </form>
     <div *ngIf="verificationSuccessful">
       <p>
-        Verification Successful!
-        <span class="signInLink"><a routerLink="/signIn">Sign in!</a></span>
+        Verification Successful! Please 
+        <span class="text-amber-400"><a routerLink="/signIn">Sign in!</a></span>
       </p>
     </div>
   </div>
