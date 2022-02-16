@@ -16,7 +16,7 @@ export class FavouritesComponent implements OnInit {
   users: User[] = [];
   constructor(
     private httpService: HttpclientService,
-    private mapComponent: MapComponent
+    // private mapComponent: MapComponent
   ) {}
 
   async ngOnInit(): Promise<void> {
