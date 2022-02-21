@@ -1,3 +1,6 @@
+import { CurrentlocationService } from './../services/currentlocation.service';
+import { FavouritesComponent } from '../favourites/favourites.component';
+
 import { Component, OnInit } from '@angular/core';
 import { Auth } from 'aws-amplify';
 import { HttpclientService } from '../services/httpclient.service';
@@ -5,6 +8,7 @@ import { HttpclientService } from '../services/httpclient.service';
 import { User } from '../user';
 import { allBranches } from 'db-seeding/allBranches';
 import { UserProviderService } from '../services/user-provider.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-interface',
@@ -12,13 +16,14 @@ import { UserProviderService } from '../services/user-provider.service';
   styleUrls: ['./user-interface.component.css'],
 })
 export class UserInterfaceComponent implements OnInit {
+
   currentInterface: string = '';
   name: string = '';
   favourites: [] = [];
   email: string = '';
   users: User[] = [];
+  anon: any;
 
-  noUserInterface: any;
 
   user: Partial<User> = {
     name: '',
@@ -27,13 +32,27 @@ export class UserInterfaceComponent implements OnInit {
     favourites: [],
   };
 
+  getCurrentLocation: any;
+ 
+  
+
   constructor(
+    private router: Router,
     private httpService: HttpclientService,
-    private userProvider: UserProviderService
-  ) {}
+    private userProvider: UserProviderService,
+    private CurrentlocationService: CurrentlocationService
+  ) {
+
+  }
+
 
   async ngOnInit(): Promise<void> {
     this.user = await this.userProvider.authenticatedUser();
+  }
+
+  ngDoCheck() {
+    this.getCurrentLocation = this.CurrentlocationService.currentLocation as unknown as Location
+
   }
 
   setInterface(page: string) {
@@ -48,5 +67,14 @@ export class UserInterfaceComponent implements OnInit {
 
   onClick() {
     console.log(document.getElementById('#state'));
+  }
+  signOut(): void {
+    console.log('Signing out');
+    Auth.signOut();
+    this.router.navigate(['/signIn']);
+  }
+
+ createAccount():void {
+    this.router.navigate(['/signUp'])
   }
 }

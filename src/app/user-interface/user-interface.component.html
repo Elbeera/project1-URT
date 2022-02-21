@@ -1,33 +1,67 @@
-<div *ngIf="user.name else noUserInterface" class="h-100 w-80 absolute bg-beige border-t-0  inset-y-0 right-0 mt-14 mr-1">
+<div
+  *ngIf="user.name; else anon"
+  class="h-120 w-60 absolute bg-beige border-t-0 inset-y-0 right-0 mt-14 mr-1"
+>
   <ng-template #noUserInterface> </ng-template>
-  <div class="h-10  mt-3 mr-3 ml-3 flex text-gray-500">
+  <div class="h-10 flex flex-row items-start text-gray-500">
     <img
-      class="h-10 ml-8"
+      class="h-8 ml-0"
       src="../../assets/navigation-arrow.png"
       alt="Gps Pin"
       (click)="setInterface('gps')"
     />
     <img
-      class="h-10 ml-14 "
+      class="h-8 ml-12"
       src="../../assets/star.png"
       alt="Favourites"
       (click)="setInterface('favourites')"
     />
     <img
-      class="h-10 ml-14"
+      class="h-8 ml-12"
       src="../../assets/user.png"
       alt="User Profile"
       (click)="setInterface('userProfile')"
     />
   </div>
   <div class="flex flex-col items-center" *ngIf="currentInterface === 'gps'">
-    <h3 class="text-black text-lg ">Current Location</h3>
-    
+    <h3 class="text-black text-sm font-poppins items-start">
+      Current Location
+    </h3>
+    <div class="py-5 font-poppins">
+      <span class="text-medium"
+        >{{ getCurrentLocation.properties.address }},</span
+      ><span>{{ getCurrentLocation.properties.city }}</span>
+      <p class="py-1">
+        <span class="font-bold text-gray-500">Phone:</span>
+        {{ getCurrentLocation.properties.phone }}
+      </p>
+      <p class="py-1">
+        <span class="font-bold text-gray-500">Store Number:</span>
+        {{ getCurrentLocation.properties.storeNumber }}
+      </p>
+      <p class="py-1 text-sm">
+        <span class="font-bold text-gray-400"> Free Wifi:</span>
+        {{ getCurrentLocation.properties.freeWifi }}
+      </p>
+      <p class="py-1 text-sm">
+        <span class="font-bold text-gray-400"> Play Place:</span>
+        {{ getCurrentLocation.properties.playplace }}
+      </p>
+      <p class="py-1 text-sm">
+        <span class="font-bold text-gray-400"> Drive Thru:</span>
+        {{ getCurrentLocation.properties.driveThru }}
+      </p>
+    </div>
   </div>
-<app-favourites  *ngIf="currentInterface === 'favourites'" (click)="onClick()"></app-favourites>
-<div class="flex flex-col items-center" *ngIf="currentInterface === 'userProfile'">
-  <h3 class="text-black font-bold uppercase ">{{user.name}}</h3>
-  <p>{{user.email}}</p>
-  
-</div>
+  <app-favourites
+    *ngIf="currentInterface === 'favourites'"
+    (click)="onClick()"
+  ></app-favourites>
+  <div
+    class="flex flex-col items-center"
+    *ngIf="currentInterface === 'userProfile'"
+  >
+    <h3 class="text-black font-bold uppercase">{{ user.name }}</h3>
+    <p>{{ user.email }}</p>
+  </div>
 </div>

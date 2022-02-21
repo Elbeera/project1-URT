@@ -38,13 +38,12 @@ export class UserProviderService {
         let userId = this.users.filter(
           (user) => user.email === this.user.email
         );
-
         this.httpService.getUser(userId[0].id).subscribe((data: any) => {
+          console.log(userId[0].id)
           this.user.favourites = data.users[0].favourites;
           this.user.name = data.users[0].name;
           this.user.email = data.users[0].email;
           this.user.id = data.users[0].id;
-          console.log(this.user);
           resolve(this.user);
         });
       });
