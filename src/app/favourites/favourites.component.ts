@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from 'aws-amplify';
-import { MapComponent } from '../map/map.component';
 import { HttpclientService } from '../services/httpclient.service';
 import { User } from '../user';
 
@@ -16,7 +15,6 @@ export class FavouritesComponent implements OnInit {
   users: User[] = [];
   constructor(
     private httpService: HttpclientService,
-    // private mapComponent: MapComponent
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -35,13 +33,13 @@ export class FavouritesComponent implements OnInit {
   getUsers(): void {
     this.httpService.getAllUsers().subscribe((data) => {
       this.users = data.users;
+      console.log(this.users)
       this.getUserById();
     });
   }
 
   getUserById(): void {
-    let userId = this.users.filter((user) => user.email === this.email); // because users is an array of objects, it will return the full object it matches with?.
-    console.log(userId);
+    let userId = this.users.filter((user) => user.email === this.email); 
     let userIdentity = userId[0].id;
     this.httpService.getUser(userIdentity).subscribe((data: any) => {
       this.favourites = data.users[0].favourites;

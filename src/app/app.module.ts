@@ -1,3 +1,5 @@
+import { MapComponent } from './map/map.component';
+import { UserInterfaceComponent } from './user-interface/user-interface.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,7 +19,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     FontAwesomeModule,
   ],
-  providers: [],
+  providers: [MapComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

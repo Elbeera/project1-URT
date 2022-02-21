@@ -1,42 +1,43 @@
 <!DOCTYPE html>
-<div class="flex flex-col items-end border-t-0 ">
-<div class=" font-poppins lg:flex lg:items-center lg:justify-between">
-  <div class="flex flex-row items-end">
-    <p
-      class="sm:text-3xl sm:truncate"
-    >
-
-       
-    <span *ngIf="capitalisedName else anon" class="text-base leading-3 text-black mr-2"> Hello {{ capitalisedName }}!</span>
-  <span class="text-sm leading-3 text-gray-600 mr-2">
-    <ng-template #anon ></ng-template>  </span>
+<div class="flex flex-col items-end border-t-0">
+  <div class="font-poppins lg:flex lg:items-center lg:justify-between">
+    <div class="flex flex-row items-end">
+      <p class="sm:text-3xl sm:truncate">
+        <span
+          *ngIf="capitalisedName; else anon"
+          class="text-base leading-3 text-black mr-2"
+        >
+          Hello {{ capitalisedName }}!</span
+        >
+        <span class="text-sm leading-3 text-gray-600 mr-2">
+          <ng-template #anon></ng-template>
+        </span>
       </p>
-  </div>
 
-
-        <button
-
-        *ngIf="capitalisedName else empty"
+      <button
+        *ngIf="capitalisedName; else empty"
         (click)="signOut()"
-          type="button"
-        class="text-amber-500 background-transparent font-bold uppercase px-3 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"
+        type="button"
+        class="text-amber-500 background-transparent font-bold uppercase px-3 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+        type="button"
       >
-  Sign Out
-</button>
-<ng-template #empty >
-
-  <button
-
-  (click)="createAccount()"
-    type="button"
-  class="text-amber-500 background-transparent font-bold uppercase px-3 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"
->
-Create account
-</button>
-
-</ng-template>
+        Sign Out
+      </button>
+      <ng-template #empty>
+        <button
+          (click)="createAccount()"
+          type="button"
+          class="text-amber-500 background-transparent font-bold uppercase px-3 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          type="button"
+        >
+          Create account
+        </button>
+      </ng-template>
+    </div>
+  </div>
 </div>
-</div>
-<div >
-  <h2 class="text-xl flex flex-row justify-center">Click on a marker to find out more:</h2>
+<div>
+  <h2 class="text-xl flex flex-row justify-center">
+    Click on a marker to find out more:
+  </h2>
 </div>
