@@ -31,6 +31,7 @@ export class FavouritesComponent implements OnInit, DoCheck {
   ngDoCheck() {
     this.user.favourites = this.userFavArray
       .userFavourites as unknown as Location[];
+    this.checkFavArray();
   }
 
   checkFavArray() {
