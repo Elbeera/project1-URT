@@ -21,9 +21,9 @@ export class HttpclientService {
       `${this.serverUrl}/locations`
     );
   }
-getUser(user_id) {
-  return this.http.get(`${this.serverUrl}/users/${user_id}`)
-}
+  getUser(user_id) {
+    return this.http.get(`${this.serverUrl}/users/${user_id}`);
+  }
   postUser(user: {
     name: string;
     mobile_number: number;
@@ -32,12 +32,4 @@ getUser(user_id) {
   }) {
     return this.http.post(`${this.serverUrl}/user`, user);
   }
-
-//   getFavourites(user_id) {
-//     return this.http.get(`${this.serverUrl}/users/${user_id}/favourites`)
-//   }
-
-//   addToFavourites(){
-
-//   }
 }

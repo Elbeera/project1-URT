@@ -1,51 +1,45 @@
-import { Component, OnInit } from '@angular/core';
-import { Auth } from 'aws-amplify';
-import { MapComponent } from '../map/map.component';
-import { HttpclientService } from '../services/httpclient.service';
+import { Component, OnInit, DoCheck } from '@angular/core';
+import { UserFavouritesService } from '../services/user-favourites.service';
+import { UserProviderService } from '../services/user-provider.service';
 import { User } from '../user';
+import { Location } from '../location';
 
 @Component({
   selector: 'app-favourites',
   templateUrl: './favourites.component.html',
   styleUrls: ['./favourites.component.css'],
 })
-export class FavouritesComponent implements OnInit {
-  name: string = '';
-  favourites: Location[] = [];
-  email: string = '';
-  users: User[] = [];
+export class FavouritesComponent implements OnInit, DoCheck {
+  user: Partial<User> = {
+    name: '',
+    email: '',
+    id: 0,
+    favourites: [],
+  };
+
+  favArrayNotEmpty: boolean;
+
   constructor(
-    private httpService: HttpclientService,
-    // private mapComponent: MapComponent
+    private userProvider: UserProviderService,
+    private userFavArray: UserFavouritesService
   ) {}
 
   async ngOnInit(): Promise<void> {
-    Auth.currentAuthenticatedUser({
-      bypassCache: false, // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
-    })
-      .then((user) => console.log(user))
-      .catch((err) => console.log(err));
-    let user = await Auth.currentAuthenticatedUser();
-    const { attributes } = user;
-    this.name = attributes.name;
-    this.email = attributes.email;
-    this.getUsers();
+    this.user = await this.userProvider.authenticatedUser();
   }
 
-  getUsers(): void {
-    this.httpService.getAllUsers().subscribe((data) => {
-      this.users = data.users;
-      this.getUserById();
-    });
+  ngDoCheck() {
+    this.user.favourites = this.userFavArray
+      .userFavourites as unknown as Location[];
   }
 
-  getUserById(): void {
-    let userId = this.users.filter((user) => user.email === this.email); // because users is an array of objects, it will return the full object it matches with?.
-    console.log(userId);
-    let userIdentity = userId[0].id;
-    this.httpService.getUser(userIdentity).subscribe((data: any) => {
-      this.favourites = data.users[0].favourites;
-      console.log(this.favourites);
-    });
+  checkFavArray() {
+    if (this.user.favourites.length === 0)
+      return (this.favArrayNotEmpty = true);
+    return (this.favArrayNotEmpty = false);
+  }
+
+  deleteFav(favIndex) {
+    this.userFavArray.deleteFromFavourites(favIndex);
   }
 }

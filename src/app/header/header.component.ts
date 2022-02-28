@@ -10,10 +10,8 @@ import { User } from '../user';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-
- capitalisedName: string;
- anon: any 
-
+  capitalisedName: string;
+  anon: any;
 
   user: Partial<User> = {
     name: '',
@@ -29,7 +27,8 @@ export class HeaderComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.user = await this.userProvider.authenticatedUser();
-    this.capitalisedName = this.user.name.charAt(0).toUpperCase()+this.user.name.slice(1)
+    this.capitalisedName =
+      this.user.name.charAt(0).toUpperCase() + this.user.name.slice(1);
   }
 
   signOut(): void {
@@ -38,7 +37,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/signIn']);
   }
 
-  createAccount():void {
-    this.router.navigate(['/signUp'])
+  createAccount(): void {
+    this.router.navigate(['/signUp']);
   }
 }

@@ -1,6 +1,17 @@
-
 <div class="flex flex-col items-center">
-    <h3 class="text-black text-lg">Favourites List</h3>
-    <p class="text-xs italic">Press the 'add to favourites' button to save your favourites here.</p>
-    <p>{{favourites}}</p>
+  <h3 class="text-black text-lg">Favourites List</h3>
+  <div *ngFor="let fav of user.favourites">
+    <h1>City: {{ fav.properties.city }}</h1>
+    <button
+      class="bg-gray-500 hover:bg-gray-400 border-b-4 border-gray-700 hover:border-gray-500 text-white text-center py-2 px-4 rounded"
+      (click)="deleteFav(user.favourites.indexOf(fav))"
+    >
+      delete
+    </button>
   </div>
+  <hr />
+  <p class="text-xs italic text-center" *ngIf="favArrayNotEmpty">
+    click the 'add to favourites' -<span class="not-italic">⭐️</span> - on the
+    location pop-up to save your favourites here.
+  </p>
+</div>

@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Auth } from 'aws-amplify';
-import { HttpclientService } from '../services/httpclient.service';
-
 import { User } from '../user';
-import { allBranches } from 'db-seeding/allBranches';
 import { UserProviderService } from '../services/user-provider.service';
 
 @Component({
@@ -14,7 +10,6 @@ import { UserProviderService } from '../services/user-provider.service';
 export class UserInterfaceComponent implements OnInit {
   currentInterface: string = '';
   name: string = '';
-  favourites: [] = [];
   email: string = '';
   users: User[] = [];
 
@@ -27,10 +22,7 @@ export class UserInterfaceComponent implements OnInit {
     favourites: [],
   };
 
-  constructor(
-    private httpService: HttpclientService,
-    private userProvider: UserProviderService
-  ) {}
+  constructor(private userProvider: UserProviderService) {}
 
   async ngOnInit(): Promise<void> {
     this.user = await this.userProvider.authenticatedUser();
@@ -44,9 +36,5 @@ export class UserInterfaceComponent implements OnInit {
     } else if (page === 'userProfile') {
       this.currentInterface = page;
     }
-  }
-
-  onClick() {
-    console.log(document.getElementById('#state'));
   }
 }
