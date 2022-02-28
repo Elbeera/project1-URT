@@ -22,6 +22,7 @@ export class FavouritesComponent implements OnInit, DoCheck {
   constructor(
     private userProvider: UserProviderService,
     private userFavArray: UserFavouritesService
+
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -42,5 +43,6 @@ export class FavouritesComponent implements OnInit, DoCheck {
 
   deleteFav(favIndex) {
     this.userFavArray.deleteFromFavourites(favIndex);
+
   }
 }

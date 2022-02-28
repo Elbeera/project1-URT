@@ -1,6 +1,10 @@
+import { CurrentlocationService } from './../services/currentlocation.service';
+import { FavouritesComponent } from '../favourites/favourites.component';
+
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { UserProviderService } from '../services/user-provider.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-interface',
@@ -8,12 +12,13 @@ import { UserProviderService } from '../services/user-provider.service';
   styleUrls: ['./user-interface.component.css'],
 })
 export class UserInterfaceComponent implements OnInit {
+
   currentInterface: string = '';
   name: string = '';
   email: string = '';
   users: User[] = [];
+  anon: any;
 
-  noUserInterface: any;
 
   user: Partial<User> = {
     name: '',
@@ -22,10 +27,24 @@ export class UserInterfaceComponent implements OnInit {
     favourites: [],
   };
 
-  constructor(private userProvider: UserProviderService) {}
+  getCurrentLocation: any;
+ 
+  constructor(
+    private router: Router,
+    private httpService: HttpclientService,
+    private userProvider: UserProviderService,
+    private CurrentlocationService: CurrentlocationService
+  ) {
+
+  }
 
   async ngOnInit(): Promise<void> {
     this.user = await this.userProvider.authenticatedUser();
+  }
+
+  ngDoCheck() {
+    this.getCurrentLocation = this.CurrentlocationService.currentLocation as unknown as Location
+
   }
 
   setInterface(page: string) {
@@ -36,5 +55,15 @@ export class UserInterfaceComponent implements OnInit {
     } else if (page === 'userProfile') {
       this.currentInterface = page;
     }
+  }
+
+  signOut(): void {
+    console.log('Signing out');
+    Auth.signOut();
+    this.router.navigate(['/signIn']);
+  }
+
+ createAccount():void {
+    this.router.navigate(['/signUp'])
   }
 }
