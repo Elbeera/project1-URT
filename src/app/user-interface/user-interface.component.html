@@ -1,5 +1,4 @@
 <div
-
   *ngIf="user.name; else anon"
   class="h-120 w-60 absolute bg-beige border-t-0 inset-y-0 right-0 mt-14 mr-1"
 >
@@ -54,10 +53,7 @@
       </p>
     </div>
   </div>
-  <app-favourites
-    *ngIf="currentInterface === 'favourites'"
-    (click)="onClick()"
-  ></app-favourites>
+  <app-favourites *ngIf="currentInterface === 'favourites'"></app-favourites>
   <div
     class="flex flex-col items-center"
     *ngIf="currentInterface === 'userProfile'"

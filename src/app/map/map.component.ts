@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Renderer2,
-} from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import * as Mapboxgl from 'mapbox-gl';
 import { HttpclientService } from '../services/httpclient.service';
@@ -22,12 +18,11 @@ export class MapComponent implements OnInit {
   map: any = Mapboxgl.Map;
   locations: Location[];
   currentLocation: any;
- 
 
   constructor(
     private renderer: Renderer2,
     private httpService: HttpclientService,
-    public userFavArray: UserFavouritesService
+    public userFavArray: UserFavouritesService,
     private setCurrent: CurrentlocationService
   ) {}
 
@@ -56,11 +51,11 @@ export class MapComponent implements OnInit {
           `<img src="../../assets/McDonald's-logo.png" alt="McDonald's Logo" width="20" height="25"><h3>State: ${feature.properties.state}</h3><p>Store Url: <a href="${feature.properties.storeUrl}">Visit store Website!</a></p><p>City: ${feature.properties.city}</p><p>Phone: ${feature.properties.phone}</p><p>State: ${feature.properties.state}</p><p>Zip: ${feature.properties.zip}</p><button id="addFav" >Add to Favourites ⭐️</button>`
         );
         popup.on('open', () => {
-          this.setCurrentLocation(feature)
+          this.setCurrentLocation(feature);
           const button = document.getElementById('addFav');
-          button.onclick = () => { 
-            this.addToFavourite(feature)
-          }
+          button.onclick = () => {
+            this.addToFavourite(feature);
+          };
         });
         new Mapboxgl.Marker({ element: el })
           .setLngLat([coordinates.lng, coordinates.lat])
@@ -77,7 +72,7 @@ export class MapComponent implements OnInit {
   addToFavourite(feature: Location) {
     this.userFavArray.addToFavourites(feature);
   }
-  setCurrentLocation(feature){
-    this.setCurrent.setCurrentLocation(feature)
+  setCurrentLocation(feature) {
+    this.setCurrent.setCurrentLocation(feature);
   }
 }
