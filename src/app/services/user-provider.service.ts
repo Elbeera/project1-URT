@@ -1,7 +1,7 @@
 import { HttpclientService } from './httpclient.service';
 import { Injectable } from '@angular/core';
 import { Auth } from 'aws-amplify';
-import { Location } from '@angular/common';
+import { Location } from '../location';
 import { User } from '../user';
 
 @Injectable({
@@ -39,11 +39,10 @@ export class UserProviderService {
           (user) => user.email === this.user.email
         );
         this.httpService.getUser(userId[0].id).subscribe((data: any) => {
-          console.log(userId[0].id)
-          this.user.favourites = data.users[0].favourites;
-          this.user.name = data.users[0].name;
-          this.user.email = data.users[0].email;
-          this.user.id = data.users[0].id;
+          this.user.favourites = userId[0].favourites;
+          this.user.name = userId[0].name;
+          this.user.email = userId[0].email;
+          this.user.id = userId[0].id;
           resolve(this.user);
         });
       });

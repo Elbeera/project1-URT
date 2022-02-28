@@ -1,8 +1,13 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import * as Mapboxgl from 'mapbox-gl';
 import { HttpclientService } from '../services/httpclient.service';
 import { Location } from '../location';
+import { UserFavouritesService } from '../services/user-favourites.service';
 import { features } from 'process';
 import { UserInterfaceComponent } from '../user-interface/user-interface.component';
 import { threadId } from 'worker_threads';
@@ -15,13 +20,14 @@ import { CurrentlocationService } from '../services/currentlocation.service';
 })
 export class MapComponent implements OnInit {
   map: any = Mapboxgl.Map;
-  locations: Location[] = [];
+  locations: Location[];
   currentLocation: any;
  
 
   constructor(
     private renderer: Renderer2,
     private httpService: HttpclientService,
+    public userFavArray: UserFavouritesService
     private setCurrent: CurrentlocationService
   ) {}
 
@@ -68,8 +74,8 @@ export class MapComponent implements OnInit {
     });
   }
 
-  addToFavourite(feature) {
-    console.log(feature);
+  addToFavourite(feature: Location) {
+    this.userFavArray.addToFavourites(feature);
   }
   setCurrentLocation(feature){
     this.setCurrent.setCurrentLocation(feature)

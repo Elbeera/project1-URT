@@ -2,11 +2,7 @@ import { CurrentlocationService } from './../services/currentlocation.service';
 import { FavouritesComponent } from '../favourites/favourites.component';
 
 import { Component, OnInit } from '@angular/core';
-import { Auth } from 'aws-amplify';
-import { HttpclientService } from '../services/httpclient.service';
-
 import { User } from '../user';
-import { allBranches } from 'db-seeding/allBranches';
 import { UserProviderService } from '../services/user-provider.service';
 import { Router } from '@angular/router';
 
@@ -19,7 +15,6 @@ export class UserInterfaceComponent implements OnInit {
 
   currentInterface: string = '';
   name: string = '';
-  favourites: [] = [];
   email: string = '';
   users: User[] = [];
   anon: any;
@@ -34,8 +29,6 @@ export class UserInterfaceComponent implements OnInit {
 
   getCurrentLocation: any;
  
-  
-
   constructor(
     private router: Router,
     private httpService: HttpclientService,
@@ -44,7 +37,6 @@ export class UserInterfaceComponent implements OnInit {
   ) {
 
   }
-
 
   async ngOnInit(): Promise<void> {
     this.user = await this.userProvider.authenticatedUser();
@@ -65,9 +57,6 @@ export class UserInterfaceComponent implements OnInit {
     }
   }
 
-  onClick() {
-    console.log(document.getElementById('#state'));
-  }
   signOut(): void {
     console.log('Signing out');
     Auth.signOut();
